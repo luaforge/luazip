@@ -5,7 +5,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include "zzip/zzip.h"
 #include "luazip.h"
 #include "lauxlib.h"

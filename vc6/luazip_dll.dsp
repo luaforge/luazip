@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I "../../lua/include" /I "../../zlib/include" /I "../zziplib-0.12.83" /I "../../compat" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /FR /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I "../../external-src/lua5/include" /I "../../external-src/zlib/include" /I "../../external-src/zziplib-0.12.83" /I "../../compat" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /FR /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x416 /d "NDEBUG"
@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 lua50.lib lualib50.lib zdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"../bin/vc6/zip.dll" /libpath:"../../lua/lib/vc6" /libpath:"../../zlib/lib"
+# ADD LINK32 lua5.lib lualib5.lib zdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"../bin/vc6/zip.dll" /libpath:"../../external-src/lua5/lib/dll" /libpath:"../../external-src/zlib/lib"
 
 !ELSEIF  "$(CFG)" == "luazip_dll - Win32 Debug"
 
@@ -69,7 +69,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "../../lua/include" /I "../../zlib/include" /I "../zziplib-0.12.83" /I "../../compat" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /FR /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "../../external-src/lua5/include" /I "../../external-src/zlib/include" /I "../../external-src/zziplib-0.12.83" /I "../../compat" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /FR /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x416 /d "_DEBUG"
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 lua50d.lib lualib50d.lib zdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"../bin/vc6/zipd.dll" /pdbtype:sept /libpath:"../../lua/lib/vc6" /libpath:"../../zlib/lib"
+# ADD LINK32 lua5.lib lualib5.lib zdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"../bin/vc6/zipd.dll" /pdbtype:sept /libpath:"../../external-src/lua5/lib/dll" /libpath:"../../external-src/zlib/lib"
 
 !ENDIF 
 
@@ -124,35 +124,35 @@ SOURCE=..\luazip.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\dir.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\dir.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\err.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\err.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\file.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\file.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\info.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\info.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\plugin.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\plugin.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\stat.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\stat.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\write.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\write.c"
 # End Source File
 # Begin Source File
 
-SOURCE="..\zziplib-0.12.83\zzip\zip.c"
+SOURCE="..\..\external-src\zziplib-0.12.83\zzip\zip.c"
 # End Source File
 # End Group
 # End Target

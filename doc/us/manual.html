@@ -1,0 +1,221 @@
+<html>
+<head>
+<! See Copyright Notice in license.html>
+<title>LuaZip: Reading files inside zip files</title>
+<style type="text/css">
+ul { list-style-type: disc };
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<hr>
+
+<center>
+<table border=0 cellspacing=2 cellpadding=2>
+<tr><td align=center><a href="index.html">
+<img border=0 alt="LuaZip logo" src="luazip-128.png"></a>
+<tr><td align=center><big><b>LuaZip</b></big>
+<tr><td align=center valign=top>Reading files inside zip files
+</table>
+</center>
+<p>
+
+<center><small>
+<a href="index.html">home</a> &middot;
+<a href="#reference">reference</a> &middot;
+<a href="#examples">example</a>
+</small></center>
+<p>
+
+<hr>
+
+<a name="introduction"></a>
+<h2>Introduction</h2>
+<p>
+LuaZip is a lightweight <a href="http://www.lua.org">Lua</a> 5.0 extension library
+that can be used to read files stored inside zip files. It uses 
+<a href="http://zziplib.sourceforge.net">zziplib</a> to do all the hard work.
+</p>
+
+<p>
+The API exposed to Lua is very simple and very similiar to the usual file handling 
+functions provided by the 
+<a href="http://www.lua.org/manual/5.0/manual.html#5.6">I/O Lua standard library</a>.<br>
+In fact, the API is so similar that parts of this manual are extractions from the Lua manual, 
+copyrighted by Tecgraf, PUC-Rio.
+</p>
+
+<a name="reference"></a>
+<h2>Reference</h2>
+
+<ul>
+
+<li> <b><tt>zip.open (filename)</tt></b> <br>
+This function opens a zip file and returns a new zip file handle. In case of 
+errors it returns nil and an error message. Unlike <code>io.open</code>, there is no
+<code>mode</code> parameter, as the only supported mode is "read".
+<br><br>
+
+<li> <b><tt>zip.openfile (filename [, extensions]])</tt></b> <br>
+This functions opens a file and returns a file handle. In case of 
+errors it returns nil and an error message. Unlike <code>io.open</code>, there is no
+<code>mode</code> parameter, as the only supported mode is "read".<br>
+This functions implements a virtual file system based on optionally compressed files.
+Instead of simply looking for a file at a given path, this function goes recursivly up 
+through all path separators ("/") looking for zip file there. If it finds a zip file, 
+this functions use the remaining path to open the asked file.<br>
+The optional parameter <em>extensions</em> allows the use of file extensions other than .zip
+during the lookup. It can be a string corresponding to the extension or an indexed table
+with the lookup sequence extensions.<br><br>
+
+<li> <b><tt>zfile:close ()</tt></b> <br>
+This function closes a zfile opened by <code>zip.open</code>
+<br><br>
+
+<li> <b><tt>zfile:files ()</tt></b> <br>
+Returns an iterator function that, each time it is called, returns a new table containing the
+following information:
+<ul>
+<li><code>filename</code>: the full path of a file
+<li><code>compressed_size</code>: the compressed size of the file in bytes
+<li><code>uncompressed_size</code>: the uncompressed size of the file in bytes
+</ul>
+<br><br>
+
+<li> <b><tt>zfile:open (filename)</tt></b> <br>
+This function opens a file that is stored inside the zip file opened by <code>zip.open</code>.<br>
+The filename may contain the full path of the file contained inside the zip. The
+directory separator must be '/'.<br>
+Unlike <code>f:open</code>, there is no <code>mode</code> parameter, as the only 
+supported mode is "read".
+<br><br>
+
+<li> <b><tt>file:read (format1, ...)</tt></b> <br>
+Reads the file <code>file</code>, according to the given formats, which specify what to read.<br>
+For each format, the function returns a string with the characters read, or nil if it cannot read
+data with the specified format. When called without formats, it uses a default format that reads
+the entire next line (see below).<br>
+The available formats are:
+<ul>
+<li><code>"*a"</code>: reads the whole file, starting at the current position. On end of file, it
+returns the empty string.
+<li><code>"*l"</code>: reads the next line (skipping the end of line), return nil on end of file.
+This is the default format.
+<li><code><i>number</i></code>: reads a string with up to that number of characters, returning nil
+on end of file. If number is zero, it reads nothing and returns an empty string, or nil on end of file.
+</ul>
+<br>
+Unlike the standard read, the format <code>"*n"</code> is not supported.
+<br><br>
+
+<li> <b><tt>file:seek ([whence] [, offset])</tt></b> <br>
+Sets and gets the file position, measured from the beginning of the file, to the position given
+by <code>offset</code> plus a base specified by the string <code>whence</code>, as follows:
+<ul>
+<li><code>set</code>: base is position 0 (beginning of the file);
+<li><code>cur</code>: base is current position;
+<li><code>end</code>: base is end of file;
+</ul>
+In case of success, function <code>seek</code> returns the final file position, measured in bytes 
+from the beginning of the file. If this function fails, it returns nil, plus a string error.<br>
+The default value for <code>whence</code> is <code>"cur"</code>, and for <code>offset</code> is 0.
+Therefore, the call <code>file:seek()</code> returns the current file position, without changing
+it; the call <code>file:seek("set")</code> sets the position to the beginning of the file (and returns 0);
+and the call <code>file:seek("end")</code> sets the position to the end of the file, and returns its
+size.
+<br><br>
+
+<li> <b><tt>file:close ()</tt></b> <br>
+This function closes a file opened by <code>zfile:open</code>.
+<br><br>
+
+<li> <b><tt>file:lines ()</tt></b> <br>
+Returns an iterator function that, each time it is called, returns a new line from the file. Therefore, 
+the construction<br>
+<p><code>for line in file:lines() do ... end</code></p>
+will iterate over all lines of the file.
+<br><br>
+
+</ul>
+
+<p>
+
+<a name="examples"></a>
+<h2>Example</h2>
+
+Suppose we have the following file hierarchy:
+
+<blockquote>
+<pre>
+- a
+  - b
+    - c.zip
+- a2
+  - b2.ext2
+- a3.ext3
+- luazip.zip
+</pre>
+</blockquote>
+
+<blockquote>
+<pre>
+c.zip contains the file 'd.txt'
+b2.ext2 is a zip file containing the file 'c2/d2.txt'
+a3.ext3 is a zip file containing the file 'b3/c3/d3.txt'
+luazip.zip contains the files 'luazip.h', 'luazip.c', 'Makefile', 'README'
+</pre>
+</blockquote>
+
+Below is a small sample code displaying the basic use of the library.
+
+<blockquote>
+<pre>
+require "zip"
+
+local zfile, err = zip.open('luazip.zip')
+
+-- print the filenames of the files inside the zip
+for file in zfile:files() do
+	print(file.filename)
+end
+
+-- open README and print it
+local f1, err = zfile:open('README')
+local s1 = f1:read("*a")
+print(s1)
+
+f1:close()
+zfile:close()
+
+-- open d.txt inside c.zip
+local d, err = zip.openfile('a/b/c/d.txt')
+assert(d, err)
+d:close()
+
+-- open d2.txt inside b2.ext2
+local d2, err = zip.openfile('a2/b2/c2/d2.txt', "ext2")
+assert(d2, err)
+d2:close()
+
+-- open d3.txt inside a3.ext3
+local d3, err = zip.openfile('a3/b3/c3/d3.txt', {"ext2", "ext3"})
+assert(d3, err)
+d3:close()
+
+</pre>
+</blockquote>
+
+<center><small>
+<a href="index.html">home</a> &middot;
+<a href="#reference">reference</a> &middot;
+<a href="#examples">example</a>
+</small></center>
+
+<hr>
+<small>
+$Id: manual.html,v 1.1 2004-12-01 18:21:29 tuler Exp $
+</small>
+
+</body>
+</html> 

@@ -13,6 +13,7 @@
 
 #define ZIPFILEHANDLE    "lzipFile"
 #define ZIPINTERNALFILEHANDLE  "lzipInternalFile"
+#define LUAZIP_MAX_EXTENSIONS 32
 
 static int pushresult (lua_State *L, int i, const char *filename) {
   if (i) {
@@ -125,8 +126,9 @@ static int f_open (lua_State *L) {
 */
 static int zip_openfile (lua_State *L) {
   ZZIP_FILE** inf;
-  zzip_strings_t *ext;
-  char ** ext2;
+
+  const char * ext2[LUAZIP_MAX_EXTENSIONS+1];
+  zzip_strings_t *ext = ext2;
 
   const char *filename = luaL_checkstring(L, 1);
   /*const char *mode = luaL_optstring(L, 2, "r");*/
@@ -151,25 +153,22 @@ static int zip_openfile (lua_State *L) {
     /* how many extension were specified? */
     n = luaL_getn(L, 2);
 
-    /* allocates spaces for n+1 extensions, one for the NULL termination and
-       1 for each extension
-    */
-    ext = calloc(n+1, sizeof(zzip_strings_t));
-    ext2 = (char**)ext;
+    if (n > LUAZIP_MAX_EXTENSIONS)
+    {
+      luaL_error(L, "too many extensions specified");
+    }
 
     for (i = 0, m = 0; i < n; i++)
     {
       lua_rawgeti(L, 2, i+1);
       if (lua_isstring(L, -1))
       {
-        const char *e;
-        char *e1;
-        int len;
-        e = lua_tostring(L, -1);
-        len = strlen(e);
-        e1 = calloc(len+2, sizeof(char));
-        sprintf(e1, ".%s", e);
-        ext2[m] = e1;
+        /* luazip specifies "zip" as the extension, but zziplib expects ".zip" */
+        lua_pushstring(L, ".");
+        lua_insert(L, -2);
+        lua_concat(L, 2);
+
+        ext2[m] = lua_tostring(L, -1);
         m++;
       }
       lua_pop(L, 1);
@@ -177,11 +176,6 @@ static int zip_openfile (lua_State *L) {
     ext2[m] = 0;
 
     *inf = zzip_open_ext_io(filename, 0, 0664, ext, 0);
-
-    /* free the allocated strings */
-    for (i = 0; i < m; i++)
-      free(ext2[i]);
-    free(ext2);
   }
   else
   {

@@ -28,8 +28,8 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2,0,0
- PRODUCTVERSION 1,2,0,0
+ FILEVERSION 1,2,1,0
+ PRODUCTVERSION 1,2,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x21L
@@ -47,14 +47,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "Ideais\0"
             VALUE "FileDescription", "LuaZip\0"
-            VALUE "FileVersion", "1, 2, 0, 0\0"
+            VALUE "FileVersion", "1, 2, 1, 0\0"
             VALUE "InternalName", "luazip\0"
-            VALUE "LegalCopyright", "Kepler Project © 2004\0"
+            VALUE "LegalCopyright", "Kepler Project © 2005\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "luazip.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "LuaZip\0"
-            VALUE "ProductVersion", "1, 2, 0, 0\0"
+            VALUE "ProductVersion", "1, 2, 1, 0\0"
             VALUE "SpecialBuild", "lua-5.0.2, zziplib-0.12.83\0"
         END
     END

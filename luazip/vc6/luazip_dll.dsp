@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I "../../lua/include" /I "../../zlib/include" /I "../zziplib-0.12.83" /I "../../compat" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I "../../lua/include" /I "../../zlib/include" /I "../zziplib-0.12.83" /I "../../compat" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LUAZIP_EXPORTS" /D LUAZIP_API=__declspec(dllexport) /FR /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x416 /d "NDEBUG"

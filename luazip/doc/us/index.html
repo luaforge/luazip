@@ -1,0 +1,143 @@
+<html>
+<head>
+<! See Copyright Notice in license.html>
+<title>LuaZip: Reading files inside zip files</title>
+<style type="text/css">
+ul { list-style-type: disc };
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<hr>
+
+<center>
+<table border=0 cellspacing=2 cellpadding=2>
+<tr><td align=center><a href="index.html">
+<img border=0 alt="LuaZip logo" src="luazip-128.png"></a>
+<tr><td align=center><big><b>LuaZip</b></big>
+<tr><td align=center valign=top>Reading files inside zip files
+</table>
+</center>
+<p>
+
+<center><small>
+<a href=#over>overview</a> &middot;
+<a href=#download>download</a> &middot;
+<a href=#new>news</a> &middot;
+<a href=#installation>installation</a> &middot;
+<a href="manual.html">manual</a> &middot;
+<a href="license.html">license</a> &middot;
+<a href="#credits">credits</a> &middot;
+<a href="#contact">contact</a>
+</small></center>
+<p>
+
+<hr>
+
+<h2>Contents</h2>
+<ul>
+  <li> <a href=#over>Overview</a>
+  <li> <a href=#download>Download</a>
+  <li> <a href=#new>What's new</a>
+  <li> <a href=#installation>Installation</a>
+  <li> <a href="manual.html">Manual</a>
+    <ul>
+      <li> <a href="manual.html#introduction">Introduction</a>
+      <li> <a href="manual.html#reference">Reference</a>
+      <li> <a href="manual.html#examples">Example</a>
+    </ul>
+  <li> <a href="license.html">Copyright &amp; License</a>
+  <li> <a href="#credits">Credits</a>
+  <li> <a href=#contact>Contact</a>
+</ul>
+
+
+<a name=over></a>
+<h2>Overview</h2>
+<p>
+LuaZip is a lightweight <a href="http://www.lua.org">Lua</a> 5.0 extension library 
+used to read files stored inside zip files, without requiring the user to 
+extract the files prior to reading. The API is very similar to the standard Lua I/O library 
+API.
+</p>
+<p>
+LuaZip is free software and uses the same <a href="license.html">license</a> as Lua 5.0.
+Copyright &copy; 2004 The <a href="http://www.keplerproject.org">Kepler Project</a>.
+</p>
+
+<a name=download></a>
+<h2>Download</h2>
+
+<p>
+LuaZip can be download from the <a href="http://luaforge.net/project/showfiles.php?group_id=8">LuaForge page</a>.
+</p>
+
+<a name=new></a>
+<h2>What's new</h2>
+<ul>
+  <li>[01/dez/2004] Version 1.2.0 released
+  <li>[25/jun/2004] Version 1.1.3 released (first public release)
+</ul>
+
+
+<a name="installation"></a>
+<h2>Installation</h2>
+
+<ul>
+<li>Unix
+<ul>
+<li>download zziplib 0.13.36 from http://zziplib.sourceforge.net;
+<li>compile and install zziplib (configure, make, make install);
+<li>compile LuaZip with make, make install;
+</ul>
+<li>Windows
+<ul>
+<li>Windows binaries are provided.
+<li>If you really want to compile LuaZip and need help, please contact us.
+</ul>
+</ul>
+
+<p>
+LuaZip follows the <a href="http://www.keplerproject.org/compat">package proposal</a>
+for Lua 5.1, therefore this package should be "installed". In other words, 
+if you are using Lua 5.0, the files compat-5.1.c and compat-5.1.h must be used 
+in the compilation and the file compat-5.1.lua must be installed in the 
+LUA_PATH. If you are using Lua 5.1, nothing should be done.
+</p>
+
+<a name="credits"></a> 
+<h2>Credits</h2>
+<p>
+LuaZip was designed by Danilo Tuler as part of the
+<a href="http://www.keplerproject.org">Kepler Project</a>.
+The implementation is compatible with Lua 5.0 and was coded by Danilo Tuler.
+
+<a name="contact"></a>
+<h2>Contact</h2>
+
+<p>
+For more information please
+<a href="mailto:tuler-NO-SPAM-THANKS@ideais.com.br">contact</a>
+us.
+Comments are welcome!
+</p>
+
+<center><small>
+<a href=#over>overview</a> &middot;
+<a href=#download>download</a> &middot;
+<a href=#new>news</a> &middot;
+<a href=#installation>installation</a> &middot;
+<a href="manual.html">manual</a> &middot;
+<a href="license.html">license</a> &middot;
+<a href="#credits">credits</a> &middot;
+<a href="#contact">contact</a>
+</small></center>
+
+<hr>
+<small>
+$Id: index.html,v 1.1 2004-12-01 18:21:29 tuler Exp $
+</small>
+
+</body>
+</html> 

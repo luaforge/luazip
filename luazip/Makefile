@@ -1,35 +1,35 @@
-# $Id: Makefile,v 1.1 2004-12-01 18:21:29 tuler Exp $
+# $Id: Makefile,v 1.2 2005-04-09 15:18:01 tomas Exp $
 
 T= zip
 
 include ./config
 
-V= 1.2.0
+V= 1.2.1
 DIST_DIR= luazip-$V
 TAR_FILE= $(DIST_DIR).tar.gz
 ZIP_FILE= $(DIST_DIR).zip
 LIBNAME= lib$T.$V$(LIB_EXT)
 
-SRCS= lua$T.c
-OBJS= lua$T.o compat-5.1.o
-DOCS= doc/index.html doc/license.html doc/manual.html doc/luazip-128.png doc/luazip-64.png
+SRCS= src/lua$T.c
+OBJS= src/lua$T.o $(COMPAT_DIR)/compat-5.1.o
+DOCS= doc/us/index.html doc/us/license.html doc/us/manual.html doc/us/luazip-128.png doc/us/luazip-64.png
 
 
-lib: $(LIBNAME)
+lib: src/$(LIBNAME)
 
-$(LIBNAME): $(OBJS)
-	$(CC) $(CFLAGS) $(LIB_OPTION) -o $(LIBNAME) $(OBJS) $(LIBS)
+src/$(LIBNAME): $(OBJS)
+	$(CC) $(CFLAGS) $(LIB_OPTION) -o src/$(LIBNAME) $(OBJS) $(LIBS)
 
-compat-5.1.o: $(COMPAT_DIR)/compat-5.1.c
+$(COMPAT_DIR)/compat-5.1.o: $(COMPAT_DIR)/compat-5.1.c
 	$(CC) -c $(CFLAGS) -o $@ $(COMPAT_DIR)/compat-5.1.c
 
-install: $(LIBNAME)
+install: src/$(LIBNAME)
 	mkdir -p $(LIB_DIR)
-	cp $(LIBNAME) $(LIB_DIR)
-	ln -f -s $(LIB_DIR)/$(LIBNAME) $(LIB_DIR)/$T$(LIB_EXT)
+	cp src/$(LIBNAME) $(LIB_DIR)
+	cd $(LIB_DIR); ln -f -s $(LIBNAME) $(LIB_DIR)/$T$(LIB_EXT)
 
 clean:
-	rm -f $L $(LIBNAME) $(OBJS)
+	rm -f $L src/$(LIBNAME) $(OBJS)
 
 dist: dist_dir
 	tar -czf $(TAR_FILE) $(DIST_DIR)
@@ -37,7 +37,8 @@ dist: dist_dir
 	rm -rf $(DIST_DIR)
 
 dist_dir:
-	mkdir -p $(DIST_DIR)
-	mkdir -p $(DIST_DIR)/doc
-	cp config $(SRCS) lua$T.h Makefile $(DIST_DIR)
-	cp $(DOCS) $(DIST_DIR)/doc
+	mkdir -p $(DIST_DIR)/src
+	mkdir -p $(DIST_DIR)/doc/us
+	cp config Makefile $(DIST_DIR)
+	cp $(SRCS) $(DIST_DIR)/src
+	cp $(DOCS) $(DIST_DIR)/doc/us

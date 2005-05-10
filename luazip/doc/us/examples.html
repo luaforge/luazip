@@ -23,7 +23,7 @@
 <div id="navigation">
 <h1>LuaZip</h1>
 	<ul>
-		<li><strong>Home</strong>
+		<li><a href="index.html">Home</a>
 			<ul>
 				<li><a href="index.html#overview">Overview</a></li>
 				<li><a href="index.html#status">Status</a></li>
@@ -40,58 +40,76 @@
 				<li><a href="manual.html#reference">Reference</a></li>
 			</ul>
 		</li>
-		<li><a href="examples.html">Examples</a></li>
+		<li><strong>Examples</strong></li>
 		<li><a href="license.html">License</a></li>
 	</ul>
 </div> <!-- id="navigation" -->
 
 <div id="content">
-	
-<h2><a name="overview"></a>Overview</h2>
+
+
+<h2><a name="examples"></a>Example</h2>
+
 <p>
-LuaZip is a lightweight <a href="http://www.lua.org">Lua</a> 5.0 extension library 
-used to read files stored inside zip files, without requiring the user to 
-extract the files prior to reading. The API is very similar to the standard Lua I/O library 
-API.
-</p>
-<p>
-LuaZip is free software and uses the same <a href="license.html">license</a> as Lua 5.0.
-Copyright &copy; 2004 The <a href="http://www.keplerproject.org">Kepler Project</a>.
+Suppose we have the following file hierarchy:
 </p>
 
-<h2><a name="status"></a>Status</h2>
-<p>
-Current version is 1.2.0. It was developed for Lua 5.0.
-</p>
+<blockquote>
+<pre>
+- a
+  - b
+    - c.zip
+- a2
+  - b2.ext2
+- a3.ext3
+- luazip.zip
+</pre>
+</blockquote>
 
-<h2><a name="download"></a>Download</h2>
+<blockquote>
+<pre>
+c.zip contains the file 'd.txt'
+b2.ext2 is a zip file containing the file 'c2/d2.txt'
+a3.ext3 is a zip file containing the file 'b3/c3/d3.txt'
+luazip.zip contains the files 'luazip.h', 'luazip.c', 'Makefile', 'README'
+</pre>
+</blockquote>
 
-<p>
-LuaZip can be download from the <a href="http://luaforge.net/project/showfiles.php?group_id=8">LuaForge page</a>.
-</p>
+Below is a small sample code displaying the basic use of the library.
 
+<pre class="example">
+require "zip"
 
-<h2><a name="history"></a>History</h2>
-<ul>
-  <li>[01/dez/2004] Version 1.2.0 released
-  <li>[25/jun/2004] Version 1.1.3 released (first public release)
-</ul>
+local zfile, err = zip.open('luazip.zip')
 
+-- print the filenames of the files inside the zip
+for file in zfile:files() do
+	print(file.filename)
+end
 
-<h2><a name="credits"></a>Credits</h2>
-<p>
-LuaZip was designed by Danilo Tuler as part of the
-<a href="http://www.keplerproject.org">Kepler Project</a>.
-The implementation is compatible with Lua 5.0 and was coded by Danilo Tuler.
+-- open README and print it
+local f1, err = zfile:open('README')
+local s1 = f1:read("*a")
+print(s1)
 
+f1:close()
+zfile:close()
 
-<h2><a name="contact"></a>Contact</h2>
+-- open d.txt inside c.zip
+local d, err = zip.openfile('a/b/c/d.txt')
+assert(d, err)
+d:close()
 
-<p>
-For more information please
-<a href="mailto:tuler-NO-SPAM-THANKS@ideais.com.br">contact</a> us.
-Comments are welcome!
-</p>
+-- open d2.txt inside b2.ext2
+local d2, err = zip.openfile('a2/b2/c2/d2.txt', "ext2")
+assert(d2, err)
+d2:close()
+
+-- open d3.txt inside a3.ext3
+local d3, err = zip.openfile('a3/b3/c3/d3.txt', {"ext2", "ext3"})
+assert(d3, err)
+d3:close()
+</pre>
 
 </div> <!-- id="content" -->
 
@@ -100,7 +118,7 @@ Comments are welcome!
 <div id="about">
 	<p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
 	<p><small>
-	$Id: index.html,v 1.2 2005-05-10 20:14:27 tuler Exp $
+	$Id: examples.html,v 1.1 2005-05-10 20:14:27 tuler Exp $
 	</small></p>
 </div> <!-- id="about" -->
 

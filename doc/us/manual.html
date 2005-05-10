@@ -94,12 +94,14 @@ LUA_PATH. If you are using Lua 5.1, nothing should be done.
 
 <h2><a name="reference"></a>Reference</h2>
 
+<dl>
 <dt><strong>zip.open (filename)</strong></dt>
 <dd>This function opens a zip file and returns a new zip file handle. In case of 
 errors it returns nil and an error message. Unlike <code>io.open</code>, there is no
 <code>mode</code> parameter, as the only supported mode is "read".</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>zip.openfile (filename [, extensions]])</strong></dt>
 <dd>This functions opens a file and returns a file handle. In case of 
 errors it returns nil and an error message. Unlike <code>io.open</code>, there is no
@@ -111,12 +113,14 @@ this functions use the remaining path to open the asked file.<br/>
 The optional parameter <em>extensions</em> allows the use of file extensions other than .zip
 during the lookup. It can be a string corresponding to the extension or an indexed table
 with the lookup sequence extensions.</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>zfile:close ()</strong></dt>
 <dd>This function closes a zfile opened by <code>zip.open</code></dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>zfile:files ()</strong></dt>
 <dd>Returns an iterator function that, each time it is called, returns a new table containing the
 following information:
@@ -126,16 +130,18 @@ following information:
 <li><code>uncompressed_size</code>: the uncompressed size of the file in bytes</li>
 </ul>
 </dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>zfile:open (filename)</strong></dt>
 <dd>This function opens a file that is stored inside the zip file opened by <code>zip.open</code>.<br/>
 The filename may contain the full path of the file contained inside the zip. The
 directory separator must be '/'.<br/>
 Unlike <code>f:open</code>, there is no <code>mode</code> parameter, as the only 
 supported mode is "read".</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>file:read (format1, ...)</strong></dt>
 <dd>Reads the file <code>file</code>, according to the given formats, which specify what to read.<br/>
 For each format, the function returns a string with the characters read, or nil if it cannot read
@@ -152,8 +158,9 @@ on end of file. If number is zero, it reads nothing and returns an empty string,
 </ul>
 <br/>
 Unlike the standard read, the format <code>"*n"</code> is not supported.</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>file:seek ([whence] [, offset])</strong></dt>
 <dd>Sets and gets the file position, measured from the beginning of the file, to the position given
 by <code>offset</code> plus a base specified by the string <code>whence</code>, as follows:
@@ -169,18 +176,20 @@ Therefore, the call <code>file:seek()</code> returns the current file position, 
 it; the call <code>file:seek("set")</code> sets the position to the beginning of the file (and returns 0);
 and the call <code>file:seek("end")</code> sets the position to the end of the file, and returns its
 size.</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>file:close ()</strong></dt>
 <dd>This function closes a file opened by <code>zfile:open</code>.</dd>
-<br/>
+</dl>
 
+<dl>
 <dt><strong>file:lines ()</strong></dt>
 <dd>Returns an iterator function that, each time it is called, returns a new line from the file. Therefore, 
 the construction<br/>
 <p><code>for line in file:lines() do ... end</code></p>
 will iterate over all lines of the file.</dd>
-<br/>
+</dl>
 
 </div> <!-- id="content" -->
 
@@ -189,7 +198,7 @@ will iterate over all lines of the file.</dd>
 <div id="about">
 	<p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
 	<p><small>
-	$Id: manual.html,v 1.2 2005-05-10 20:14:27 tuler Exp $
+	$Id: manual.html,v 1.3 2005-05-10 20:20:49 tuler Exp $
 	</small></p>
 </div> <!-- id="about" -->
 

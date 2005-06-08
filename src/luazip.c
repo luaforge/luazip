@@ -1,10 +1,11 @@
 /*
  LuaZip - Reading files inside zip files.
+ http://www.keplerproject.org/luazip/
 
  Author: Danilo Tuler
  Copyright (c) 2003-2005 Kepler Project
 
- $Id: luazip.c,v 1.6 2005-06-08 20:12:33 tuler Exp $
+ $Id: luazip.c,v 1.7 2005-06-08 20:16:24 tuler Exp $
 */
 
 #include <string.h>

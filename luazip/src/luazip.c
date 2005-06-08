@@ -324,6 +324,8 @@ static int read_number (lua_State *L, ZZIP_FILE *f) {
 
 static int test_eof (lua_State *L, ZZIP_FILE *f) {
   /* TODO */
+	(void) L;
+	(void) f;
   return 1;
 }
 

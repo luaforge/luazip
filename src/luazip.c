@@ -5,7 +5,7 @@
  Author: Danilo Tuler
  Copyright (c) 2003-2005 Kepler Project
 
- $Id: luazip.c,v 1.7 2005-06-08 20:16:24 tuler Exp $
+ $Id: luazip.c,v 1.8 2005-06-20 22:21:49 tomas Exp $
 */
 
 #include <string.h>
@@ -504,11 +504,8 @@ static void set_info (lua_State *L) {
 	lua_pushliteral (L, "_DESCRIPTION");
 	lua_pushliteral (L, "Reading files inside zip files");
 	lua_settable (L, -3);
-	lua_pushliteral (L, "_NAME");
-	lua_pushliteral (L, "LuaZip");
-	lua_settable (L, -3);
 	lua_pushliteral (L, "_VERSION");
-	lua_pushliteral (L, "1.2.1");
+	lua_pushliteral (L, "LuaZip 1.2.1");
 	lua_settable (L, -3);
 }
 

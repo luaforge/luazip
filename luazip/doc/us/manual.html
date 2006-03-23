@@ -11,10 +11,10 @@
 <div id="container">
 	
 <div id="product">
-	<div id="product_logo"><a href="http://www.keplerproject.org">
-		<img alt="LuaSQL logo" src="luazip-128.png"/>
-	</a></div>
-	<div id="product_name"><big><b>LuaZip</b></big></div>
+	<div id="product_logo">
+        <a href="http://www.keplerproject.org"><img alt="LuaZip logo" src="luazip-128.png"/></a>
+    </div>
+	<div id="product_name"><big><strong>LuaZip</strong></big></div>
 	<div id="product_description">Reading files inside zip files</div>
 </div> <!-- id="product" -->
 
@@ -41,6 +41,12 @@
 			</ul>
 		</li>
 		<li><a href="examples.html">Examples</a></li>
+        <li><a href="http://luaforge.net/projects/luazip/">Project</a>
+            <ul>
+                <li><a href="http://luaforge.net/tracker/?group_id=8">Bug Tracker</a></li>
+                <li><a href="http://luaforge.net/scm/?group_id=8">CVS</a></li>
+            </ul>
+        </li>
 		<li><a href="license.html">License</a></li>
 	</ul>
 </div> <!-- id="navigation" -->
@@ -49,24 +55,16 @@
 
 
 <h2><a name="introduction"></a>Introduction</h2>
-<p>
-LuaZip is a lightweight <a href="http://www.lua.org">Lua</a> 5.0 extension library
+
+<p>LuaZip is a lightweight <a href="http://www.lua.org">Lua</a> 5.0 extension library
 that can be used to read files stored inside zip files. It uses 
-<a href="http://zziplib.sourceforge.net">zziplib</a> to do all the hard work.
-</p>
+<a href="http://zziplib.sourceforge.net">zziplib</a> to do all the hard work.</p>
 
-<p>
-The API exposed to Lua is very simple and very similiar to the usual file handling 
-functions provided by the 
+<p>The API exposed to Lua is very simple and very similiar to the usual file handling 
+functions provided by the
 <a href="http://www.lua.org/manual/5.0/manual.html#5.6">I/O Lua standard library</a>.
-In fact, the API is so similar that parts of this manual are extractions from the Lua manual, 
-copyrighted by Tecgraf, PUC-Rio.
-</p>
-
-<p>LuaZip source is distributed as a pair of C source and header
-files. The distribution provides a <code>Makefile</code> prepared to
-compile the library and install it. The file <code>config</code> should
-be edited to suit the needs of the aimed platform.</p>
+In fact, the API is so similar that parts of this manual are extracted from the Lua manual, 
+copyrighted by Tecgraf, PUC-Rio.</p>
 
 <h2><a name="installation"></a>Installation</h2>
 
@@ -187,7 +185,7 @@ binary properly.</p>
 <div id="about">
 	<p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
 	<p><small>
-	$Id: manual.html,v 1.8 2005-06-08 16:00:34 tuler Exp $
+	$Id: manual.html,v 1.9 2006-03-23 20:45:21 carregal Exp $
 	</small></p>
 </div> <!-- id="about" -->
 

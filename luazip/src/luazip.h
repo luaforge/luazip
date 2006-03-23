@@ -3,9 +3,9 @@
  http://www.keplerproject.org/luazip/
 
  Author: Danilo Tuler
- Copyright (c) 2003-2005 Kepler Project
+ Copyright (c) 2003-2006 Kepler Project
 
- $Id: luazip.h,v 1.3 2005-06-08 20:16:24 tuler Exp $
+ $Id: luazip.h,v 1.4 2006-03-23 20:44:53 carregal Exp $
 */
 
 #ifndef luazip_h

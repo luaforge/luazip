@@ -5,7 +5,7 @@
  Author: Danilo Tuler
  Copyright (c) 2003-2006 Kepler Project
 
- $Id: luazip.c,v 1.9 2006-03-23 20:44:53 carregal Exp $
+ $Id: luazip.c,v 1.10 2006-07-24 01:22:43 tomas Exp $
 */
 
 #include <string.h>
@@ -13,7 +13,9 @@
 #include "zzip/zzip.h"
 #include "luazip.h"
 #include "lauxlib.h"
+#if ! defined (LUA_VERSION_NUM) || LUA_VERSION_NUM < 501
 #include "compat-5.1.h"
+#endif
 
 #define ZIPFILEHANDLE    "lzipFile"
 #define ZIPINTERNALFILEHANDLE  "lzipInternalFile"
@@ -451,9 +453,13 @@ static int ff_seek (lua_State *L) {
   static const int mode[] = {SEEK_SET, SEEK_CUR, SEEK_END};
   static const char *const modenames[] = {"set", "cur", "end", NULL};
   ZZIP_FILE *f = tointernalfile(L, 1);
-  int op = luaL_findstring(luaL_optstring(L, 2, "cur"), modenames);
   long offset = luaL_optlong(L, 3, 0);
+#if ! defined (LUA_VERSION_NUM) || LUA_VERSION_NUM < 501
+  int op = luaL_findstring(luaL_optstring(L, 2, "cur"), modenames);
   luaL_argcheck(L, op != -1, 2, "invalid mode");
+#else
+  int op = luaL_checkoption(L, 2, "cur", modenames);
+#endif
   op = zzip_seek(f, offset, mode[op]);
   if (op < 0)
     return pushresult(L, 0, NULL);  /* error */
@@ -505,7 +511,7 @@ static void set_info (lua_State *L) {
 	lua_pushliteral (L, "Reading files inside zip files");
 	lua_settable (L, -3);
 	lua_pushliteral (L, "_VERSION");
-	lua_pushliteral (L, "LuaZip 1.2.2");
+	lua_pushliteral (L, "LuaZip 1.2.3");
 	lua_settable (L, -3);
 }
 

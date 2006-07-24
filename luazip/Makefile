@@ -1,13 +1,17 @@
-# $Id: Makefile,v 1.9 2005-06-27 17:43:19 tomas Exp $
+# $Id: Makefile,v 1.10 2006-07-24 01:24:36 tomas Exp $
 
 T= zip
-V= 1.2.1
+V= 1.2.3
 CONFIG= ./config
 
 include $(CONFIG)
 
+ifeq "$(LUA_VERSION_NUM)" "500"
+COMPAT_O= $(COMPAT_DIR)/compat-5.1.o
+endif
+
 SRCS= src/lua$T.c
-OBJS= src/lua$T.o $(COMPAT_DIR)/compat-5.1.o
+OBJS= src/lua$T.o $(COMPAT_O)
 
 
 lib: src/$(LIBNAME)

@@ -3,9 +3,9 @@
  http://www.keplerproject.org/luazip/
 
  Author: Danilo Tuler
- Copyright (c) 2003-2006 Kepler Project
+ Copyright (c) 2003-2007 Kepler Project
 
- $Id: luazip.c,v 1.10 2006-07-24 01:22:43 tomas Exp $
+ $Id: luazip.c,v 1.11 2007-06-18 18:47:05 carregal Exp $
 */
 
 #include <string.h>
@@ -505,7 +505,7 @@ static const luaL_reg fflib[] = {
 */
 static void set_info (lua_State *L) {
 	lua_pushliteral (L, "_COPYRIGHT");
-	lua_pushliteral (L, "Copyright (C) 2003-2006 Kepler Project");
+	lua_pushliteral (L, "Copyright (C) 2003-2007 Kepler Project");
 	lua_settable (L, -3);
 	lua_pushliteral (L, "_DESCRIPTION");
 	lua_pushliteral (L, "Reading files inside zip files");

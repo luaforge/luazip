@@ -1,10 +1,17 @@
 # Installation directories
+
+# Default prefix
+PREFIX = /usr/local
+
 # System's libraries directory (where binary libraries are installed)
-LUA_LIBDIR= /usr/local/lib/lua/5.0
+LUA_LIBDIR= $(PREFIX)/lib/lua/5.1
+
 # System's lua directory (where Lua libraries are installed)
-LUA_DIR= /usr/local/share/lua/5.0
+LUA_DIR= $(PREFIX)/share/lua/5.1
+
 # Lua includes directory
-LUA_INC= /usr/local/include/lua5
+LUA_INC= $(PREFIX)/include
+
 # Zziplib includes directory
 ZZLIB_INC= /usr/local/include
 
@@ -23,4 +30,4 @@ INCS= -I$(LUA_INC) -I$(ZZLIB_INC) -I$(COMPAT_DIR)
 CFLAGS= $(WARN) $(INCS)
 CC= gcc
 
-# $Id: config,v 1.6 2006-07-24 01:24:36 tomas Exp $
+# $Id: config,v 1.7 2007-10-29 22:59:10 carregal Exp $

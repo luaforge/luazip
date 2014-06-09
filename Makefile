@@ -24,8 +24,8 @@ $(COMPAT_DIR)/compat-5.1.o: $(COMPAT_DIR)/compat-5.1.c
 
 install: src/$(LIBNAME)
 	mkdir -p $(LUA_LIBDIR)
-	cp src/$(LIBNAME) $(LUA_LIBDIR)
-	cd $(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
+	cp src/$(LIBNAME) $(LUA_LIBDIR)/$T.so
+	#cd $(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
 
 clean:
 	rm -f $L src/$(LIBNAME) $(OBJS)

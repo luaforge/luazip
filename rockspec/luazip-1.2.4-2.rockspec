@@ -68,10 +68,12 @@ build = {
 +  lua_pop(L, nup);  /* remove upvalues */
 +}
 +#endif
++#ifndef LUA_COMPAT_OPENLIB
 +static void luaL_openlib(lua_State *L, const char* name, const luaL_Reg* lib, int nup) {
 +  lua_newtable(L); luaL_setfuncs(L, lib, nup);
 +  if (name) { lua_pushvalue(L, -1); lua_setglobal(L, name); }
 +}
++#endif
 +#endif
 +
  static int pushresult (lua_State *L, int i, const char *filename) {
